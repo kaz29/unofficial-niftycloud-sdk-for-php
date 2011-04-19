@@ -3,7 +3,7 @@
 ## Requirements
 PHP5(sha1,sha256,SimpleXML)
 
-curl-7.20.1 (テストしたバージョンなのでこれ以前の物でも動くかも)
+curl-7.15.5 (テストしたバージョンなのでこれ以前の物でも動くかも)
 
 ## Installation
 
