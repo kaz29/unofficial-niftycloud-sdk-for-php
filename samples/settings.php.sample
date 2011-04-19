@@ -1,0 +1,7 @@
+<?php
+$params = array(
+    'secret_key' => 'ここにSecretAccessKeyを入れてください',
+    'access_key' => 'ここにAccessKeyを入れてください。',  
+    'instance_id' => "ここにテストで使用するインスタンスIDを入れてください。",  
+    'key_name' => 'ここにテストで使用するSSH Key IDを入れてください',  
+);
