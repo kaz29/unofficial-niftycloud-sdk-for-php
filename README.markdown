@@ -17,4 +17,4 @@ exsamples ディレクトリ以下にサンプルコードがあります。
 Unofficial NiftyCloud SDK for PHPは、私わたなべが個人的に開発した物ですので、ニフティ株式会社に問い合わせ等しない様にお願いします！
 
 ## Author
-Kazuhiro Watabane ([kaz29](http://twitter.com/kaz29))
+Kazuhiro Watabane ([kaz29](http://twitter.com/kaz_29))
