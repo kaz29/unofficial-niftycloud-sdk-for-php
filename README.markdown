@@ -12,5 +12,9 @@ curl-7.20.1 (テストしたバージョンなのでこれ以前の物でも動�
 
 exsamples ディレクトリ以下にサンプルコードがあります。
 
+## Notice
+
+Unofficial NiftyCloud SDK for PHPは、私わたなべが個人的に開発した物ですので、ニフティ株式会社に問い合わせ等しない様にお願いします！
+
 ## Author
 Kazuhiro Watabane ([kaz29](http://twitter.com/kaz29))
