@@ -58,9 +58,23 @@ class NiftyCloudAPI
 	 **/
 	public function __construct($settings=array())
 	{
-		$this->settings = array_merge($this->settings, $settings);
+		$this->settings($settings);
 	}
 
+	/**
+	 * 設定情報の取得/再設定
+	 *
+	 * @return void
+	 * @author Kaz Watanabe
+	 **/
+	public function settings($settings=null)
+	{
+		if ( is_null($settings) )
+			return $this->settings ;
+		
+		$this->settings = array_merge($this->settings, $settings);
+		return $this->settings;
+	}
 	/**
 	 * バージョン番号を取得
 	 *
