@@ -1065,4 +1065,39 @@ class NiftyCloud extends NiftyCloudAPI
 		
 		return $this->request('DescribeSecurityGroups', $request_param);
 	}
+	
+	/**
+	 * ファイアウォールグループを新規に作成する
+	 *
+	 * @return void
+	 * @author Kaz Watanabe
+	 **/
+	public function create_security_group($params=array())
+	{
+		$defaults = array(
+			'GroupName' => null,
+			'GroupDescription' => null,
+		);
+
+		$params = array_merge($defaults, $params);
+
+		return $this->request('CreateSecurityGroup', $params);
+	}
+
+	/**
+	 * ファイアウォールグループを削除する
+	 *
+	 * @return void
+	 * @author Kaz Watanabe
+	 **/
+	public function delete_security_group($params=array())
+	{
+		$defaults = array(
+			'GroupName' => null,
+		);
+
+		$params = array_merge($defaults, $params);
+
+		return $this->request('DeleteSecurityGroup', $params);
+	}
 } // END class NiftyCloud extends NiftyCloudAPI_Base
