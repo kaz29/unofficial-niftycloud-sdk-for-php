@@ -1100,4 +1100,21 @@ class NiftyCloud extends NiftyCloudAPI
 
 		return $this->request('DeleteSecurityGroup', $params);
 	}
+
+	/**
+	 * ファイアウォールグループの設定情報を更新する
+	 *
+	 * @return void
+	 * @author Kaz Watanabe
+	 **/
+	public function update_security_group($params=array())
+	{
+		$defaults = array(
+			'GroupName' => null,
+		);
+
+		$params = array_merge($defaults, $params);
+
+		return $this->request('UpdateSecurityGroup', $params);
+	}
 } // END class NiftyCloud extends NiftyCloudAPI_Base
