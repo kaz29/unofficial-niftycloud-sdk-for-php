@@ -205,6 +205,20 @@ class NiftyCloud extends NiftyCloudAPI
 
 		$params = array_merge($_defaults, $params);
 
+		if ( isset($params['SecurityGroup']) ) {
+			if ( !is_array($params['SecurityGroup']) ) {
+				$params['SecurityGroup'] = (array)$params['SecurityGroup'];
+			}
+			
+			$index = 0 ;
+			foreach($params['SecurityGroup'] as $key => $value) {
+				$index = $key+1;
+				$params["SecurityGroup.{$index}"] = $value;
+			}
+			
+			unset($params['SecurityGroup']) ;
+		}
+
 		return $this->request('RunInstances', $params);
 	}
 
