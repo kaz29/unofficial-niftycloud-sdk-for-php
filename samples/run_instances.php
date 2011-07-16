@@ -20,6 +20,8 @@ $result = $api->run_instances(array(
 	'AccountingType' => NiftyCloud::ACCOUNTING_TYPE_PAYPER,
 	'Admin' => null,
 	'Password' => $params['instance_id'],
+		// Firewall機能が有効でない環境の場合は以下を指定するとエラーが発生します。
+	'SecurityGroup' => 'default(Linux)',
 ));
 if ( $api->isError() ) {
 	echo "Error\n";
