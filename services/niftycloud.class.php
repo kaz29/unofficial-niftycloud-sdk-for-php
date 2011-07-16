@@ -1021,4 +1021,48 @@ class NiftyCloud extends NiftyCloudAPI
 		
 		return $this->request('UpdateLoadBalancer', $params);
 	}
+	
+	/**
+	 * 指定したファイアウォールグループの設定情報を取得する
+	 *
+	 * @param array		$params
+	 * @access public
+	 * @return void
+	 * @author Kaz Watanabe
+	 **/
+	public function describe_security_groups($params=array())
+	{
+		$request_param = array();
+		
+		if ( isset($params['GroupName']) ) {
+			if ( !is_array($params['GroupName']) ) {
+				$params['GroupName'] = (array)$params['GroupName'];
+			}
+			
+			$index = 0;
+			foreach($params['GroupName'] as $key => $group_name) {
+				$index = $key+1;
+				$request_param["GroupName.{$index}"] = $group_name;
+			}
+		}
+		
+		if ( isset($params['Filter']) && is_array($params['Filter']) ) {
+			$n = 0;
+			foreach($params['Filter'] as $name => $values) {
+				$n++ ;
+				if ( !is_array($values) ) {
+					$values = (array)$values;
+				}
+				
+				$request_param["Filter.{$n}.Name"] = $name;
+				$m = 0;
+				foreach($values as $value) {
+					$m++;
+					$request_param["Filter.{$n}.Value.{$m}"] = $value;
+				}
+			}
+		}
+		
+		return $this->request('DescribeSecurityGroups', $request_param);
+	}
 } // END class NiftyCloud extends NiftyCloudAPI_Base
