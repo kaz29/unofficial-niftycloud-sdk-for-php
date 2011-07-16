@@ -4,11 +4,11 @@ include_once(dirname(dirname(__FILE__)).DIRECTORY_SEPARATOR.'services'.DIRECTORY
 
 $ret = @include('settings.php');
 if ( !$ret ) {
-	trigger_error('AvailabilityZonesTest::setUp() - ~/samples/settings.php not found.', E_USER_ERROR);
+	trigger_error('stop_instances - ~/samples/settings.php not found.', E_USER_ERROR);
 }
 
 if ( !isset($params) ) {
-	trigger_error('AvailabilityZonesTest::setUp() - no valiable $params found in settings.php', E_USER_ERROR);
+	trigger_error('stop_instances - no variable $params found in settings.php', E_USER_ERROR);
 }
 
 $api = new NiftyCloud($params);
