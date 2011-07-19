@@ -1239,4 +1239,28 @@ class NiftyCloud extends NiftyCloudAPI
 		
 		return $this->request('RevokeSecurityGroupIngress', $request_params);
 	}
+	
+	/**
+	 * 指定したファイアウォールグループから許可ルールを削除する
+	 *
+	 * @return void
+	 * @author Kaz Watanabe
+	 **/
+	public function describe_security_activities($params=array())
+	{
+		$defaults = array(
+			'GroupName' => null,
+			'ActivityDate' => null,
+			'Range.StartNumber' => 1,
+			'Range.EndNumber' => 100,
+		);
+		
+		if ( !isset($params['GroupName']) ) {
+			return false;
+		}
+		
+		$params = array_merge($defaults, $params);
+	
+		return $this->request('DescribeSecurityActivities', $params);
+	}
 } // END class NiftyCloud extends NiftyCloudAPI_Base
