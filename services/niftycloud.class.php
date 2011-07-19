@@ -1178,4 +1178,65 @@ class NiftyCloud extends NiftyCloudAPI
 		
 		return $this->request('AuthorizeSecurityGroupIngress', $request_params);
 	}
+	
+	/**
+	 * 指定したファイアウォールグループから許可ルールを削除する
+	 *
+	 * @return void
+	 * @author Kaz Watanabe
+	 **/
+	public function revoke_security_group_ingress($params=array())
+	{
+		$request_params = array(
+			'GroupName' => null,
+		);
+
+		if ( !isset($params['GroupName']) || !isset($params['IpPermissions']) || !is_array($params['IpPermissions']) ) {
+			return false;
+		}
+		
+		$request_params['GroupName'] = $params['GroupName'];
+		$n = 0;
+		foreach($params['IpPermissions'] as $ip_permission) {
+			$n++;
+			
+			$proto = strtolower($ip_permission['IpProtocol']);
+			$request_params["IpPermissions.{$n}.IpProtocol"] = strtoupper($proto);
+			switch($proto) {
+			case 'tcp': 
+			case 'udp':
+				$request_params["IpPermissions.{$n}.FromPort"] = $ip_permission['FromPort'];
+				break ;
+			default:
+				break ;
+			}
+			
+			if ( isset($ip_permission['InOut']) ) {
+				$request_params["IpPermissions.{$n}.InOut"] = $ip_permission['InOut'];
+			}
+			
+			$m = 0;
+			if ( isset($ip_permission['CidrIp']) ) {
+				if ( is_string($ip_permission['CidrIp']) ) {
+					$ip_permission['CidrIp'] = (array)$ip_permission['CidrIp'];
+				}
+				foreach($ip_permission['CidrIp'] as $value) {
+					$m++ ;
+					$request_params["IpPermissions.{$n}.IpRanges.{$m}.CidrIp"] = $value;
+				}
+			}	
+
+			if ( isset($ip_permission['GroupName']) ) {
+				if ( is_string($ip_permission['GroupName']) ) {
+					$ip_permission['GroupName'] = (array)$ip_permission['GroupName'];
+				}
+				foreach($ip_permission['GroupName'] as $value) {
+					$m++ ;
+					$request_params["ipPermissions.{$n}.Groups.{$m}.GroupName"] = $value;
+				}
+			}	
+		}
+		
+		return $this->request('RevokeSecurityGroupIngress', $request_params);
+	}
 } // END class NiftyCloud extends NiftyCloudAPI_Base
