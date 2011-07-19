@@ -42,7 +42,7 @@ class NiftyCloudAPI
 		'SignatureVersion' => 2,
 	);
 
-	private $version = '0.1a';
+	private $version = '0.2a';
 	private $request_params=null;
 	private $request_url=null;
 	private $response_status=null;
