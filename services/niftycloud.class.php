@@ -1263,4 +1263,68 @@ class NiftyCloud extends NiftyCloudAPI
 	
 		return $this->request('DescribeSecurityActivities', $params);
 	}
+	
+	/**
+	 * 指定したファイアウォールグループを指定したサーバーへ適用する
+	 *
+	 * @return void
+	 * @author Kaz Watanabe
+	 **/
+	public function register_instances_with_security_group($params=array())
+	{
+		$defaults = array(
+			'GroupName' => null,
+		);
+		
+		if ( !isset($params['GroupName']) || !isset($params['InstanceId']) ) {
+			return false;
+		}
+		
+		$params = array_merge($defaults, $params);
+		
+		if ( !is_array($params['InstanceId']) ) {
+			$params['InstanceId'] = (array)$params['InstanceId'];
+		}
+		
+		$n = 0;
+		foreach($params['InstanceId'] as $instance_id) {
+			$n++;
+			$params["InstanceId.{$n}"] = $instance_id;
+		}
+		unset($params['InstanceId']);
+		
+		return $this->request('RegisterInstancesWithSecurityGroup', $params);
+	}
+	
+	/**
+	 * 指定したファイアウォールグループから指定したサーバーをはずす
+	 *
+	 * @return void
+	 * @author Kaz Watanabe
+	 **/
+	public function deregister_instances_from_security_group($params=array())
+	{
+		$defaults = array(
+			'GroupName' => null,
+		);
+		
+		if ( !isset($params['GroupName']) || !isset($params['InstanceId']) ) {
+			return false;
+		}
+		
+		$params = array_merge($defaults, $params);
+		
+		if ( !is_array($params['InstanceId']) ) {
+			$params['InstanceId'] = (array)$params['InstanceId'];
+		}
+		
+		$n = 0;
+		foreach($params['InstanceId'] as $instance_id) {
+			$n++;
+			$params["InstanceId.{$n}"] = $instance_id;
+		}
+		unset($params['InstanceId']);
+		
+		return $this->request('DeregisterInstancesFromSecurityGroup', $params);
+	}
 } // END class NiftyCloud extends NiftyCloudAPI_Base
