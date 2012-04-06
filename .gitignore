@@ -1,3 +1,4 @@
-tests
+test/settings.php
 samples/settings.php
 debug.php
+.DS_Store

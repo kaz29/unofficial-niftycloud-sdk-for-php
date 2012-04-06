@@ -1,0 +1,7 @@
+#!/bin/bash
+
+TESTSUITE=$(dirname -- "$(cd -P -- "$(dirname -- "$0")" && pwd -P)")
+echo $TESTSUITE
+exec phpunitrunner -p "$TESTSUITE"/prepare.php -c "$@"
+
+exit;
