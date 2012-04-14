@@ -29,12 +29,16 @@ class Base
     $path = dirname(__FILE__);
 
     $items = explode('\\', $className);
-    $class = $items[count($items)-1];
-    if ( $items[count($items)-2] === 'Cloud' ||
-         $items[count($items)-2] === 'Storage' ) {
-      $path .= DIRECTORY_SEPARATOR.$items[count($items)-2];
+    if (count($items) > 1) {
+      $class = $items[count($items)-1];
+      if ( $items[count($items)-2] === 'Cloud' ||
+           $items[count($items)-2] === 'Storage' ) {
+        $path .= DIRECTORY_SEPARATOR.$items[count($items)-2];
+      }
+    } else {
+      $class = $items[0];
     }
-    
+
     if ( !file_exists($path.DIRECTORY_SEPARATOR.$class.'.php') ) {
       throw new \RuntimeException('Class file not found.', -1);
     }
