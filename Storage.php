@@ -129,6 +129,8 @@ class Storage extends Base
     
 		$fp = null;
 
+    $this->is_error = true;
+    
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_HEADER, true);
 		curl_setopt($ch, CURLINFO_HEADER_OUT, true);
