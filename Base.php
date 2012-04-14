@@ -108,7 +108,11 @@ class Base
 		}
 		
 		if ( $content_type === 'application/xml') {
-		  return new \SimpleXMLElement($response_body);
+		  if (strlen($response_body)<=0) {
+  		  return null;
+  		}
+
+	    return new \SimpleXMLElement($response_body);
     } else {
       return $response_body;
     }
