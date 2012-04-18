@@ -39,9 +39,9 @@ class Base
       $class = $items[0];
     }
 
-    if ( !file_exists($path.DIRECTORY_SEPARATOR.$class.'.php') ) {
-      throw new \RuntimeException('Class file not found.', -1);
-    }
+  	if (!file_exists($path.DIRECTORY_SEPARATOR.$class.'.php'))
+  	  return ;
+
     require_once($path.DIRECTORY_SEPARATOR.$class.'.php');
   }
   
