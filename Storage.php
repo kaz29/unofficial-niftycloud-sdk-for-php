@@ -4,7 +4,7 @@ namespace decr_jp\NiftyCloud;
 class Storage extends Base
 {
 	const ACL_PRIVATE             = 'private';
-	const ACL_PUBLIC_PRIVATE      = 'public-read';
+	const ACL_PUBLIC_READ		      = 'public-read';
 	const ACL_AUTHENTICATED_READ  = 'authenticated-read';
 
   public function __construct($params=null)
@@ -126,7 +126,7 @@ class Storage extends Base
 	  if (isset($request['x-nifty-acl'])) {
 	    $header[] = "x-nifty-acl: {$request['x-nifty-acl']}";
 	  }
-    
+
 		$fp = null;
 
     $this->is_error = true;
